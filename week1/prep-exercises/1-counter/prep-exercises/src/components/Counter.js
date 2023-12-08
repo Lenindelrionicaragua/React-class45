@@ -17,7 +17,7 @@ const Counter = () => {
       <h1>Counter</h1>
       <Count count={count} />
       <p className="feedback">{feedback}</p>
-      <Button onClick={handleIncrement} text="Add 1!" />
+      <Button onClick={handleIncrement} text="Add 1" />
     </div>
   );
 };

@@ -1,0 +1,18 @@
+/* Category list styles */
+.category-list {
+  display: flex;
+  flex-wrap: nowrap; /* Display categories in a single row */
+  justify-content: flex-start;
+  list-style: none;
+  padding: 0;
+}
+
+.category-list li {
+  margin-right: 20px;
+  cursor: pointer;
+  color: #007bff; /* Blue color for category links */
+}
+
+.category-list li.active {
+  font-weight: bold; /* Make the active category bold */
+}

@@ -1,58 +1,56 @@
 import React, { useState } from "react";
 import "./App.css";
+import "./styles/ProductList.css";
+import "./styles/CategoryList.css";
+import allProducts from "./fake-data/all-products";
+import CategoryList from "./components/CategoryList/CategoryList";
+import ProductList from "./components/ProductList/ProductList";
 
 const App = () => {
-  // Fetch the product data from the provided file
-  const allProducts = require("./all-products.json");
-
-  // State to manage the selected category
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
-  // Function to filter products based on the selected category
-  const filteredProducts = selectedCategory
-    ? allProducts.filter((product) => product.category === selectedCategory)
-    : allProducts;
+  const categories = Array.from(
+    new Set(allProducts.map((product) => product.category))
+  );
 
-  // Function to handle category selection
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
+    setSelectedProduct(null); // Reset selected product when changing categories
+  };
+
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
+    setSelectedCategory(null); // Reset selected category when clicking on a product
   };
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>E-commerce App</h1>
-        {/* Category list */}
-        <div>
-          <h2>Categories</h2>
-          <ul>
-            {/* Display all categories */}
-            {Array.from(
-              new Set(allProducts.map((product) => product.category))
-            ).map((category) => (
-              <li
-                key={category}
-                className={category === selectedCategory ? "active" : ""}
-                onClick={() => handleCategoryClick(category)}
-              >
-                {category}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Product list */}
-        <div>
-          <h2>Products</h2>
-          <ul>
-            {/* Display all products */}
-            {filteredProducts.map((product) => (
-              <li key={product.id}>
-                <strong>{product.name}</strong> - {product.description}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <CategoryList
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onCategoryClick={handleCategoryClick}
+        />
+        {selectedProduct ? (
+          <div>
+            {/* Mostrar solo el producto seleccionado */}
+            <h2>{selectedProduct.title.replace(/^FAKE: /, "")}</h2>
+            <img
+              src={selectedProduct.image}
+              alt={selectedProduct.title}
+              className="product-image"
+            />
+            <p>{selectedProduct.description}</p>
+          </div>
+        ) : (
+          <ProductList
+            products={allProducts}
+            selectedCategory={selectedCategory}
+            onProductClick={handleProductClick}
+          />
+        )}
       </header>
     </div>
   );

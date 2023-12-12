@@ -1,27 +1,70 @@
-# Ecommerce Project I
+# Getting Started with Create React App
 
-## 1. Setup
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-The first step to any project is to setup your development environment. Follow the steps:
+## Available Scripts
 
-1. Inside this folder (`week1/project`), use `create-react-app` to create a React application. Give it the name `ecommerce`
-   > You are going to be copying and refactoring your code every week but will simultaneously be getting feedback for previous weeks. As such, at the beginning of every week you copy over the project files from the previous week into a new folder and a new branch. To help you identify if all is well, we suggest keeping it in the week folder that it is a part of.
-2. Copy and paste the folder `fake-data` inside the `src` folder of your new project
+In the project directory, you can run:
 
-## 2. Requirements
+### `npm start`
 
-This week you'll build the foundation of your application. It should eventually look like this:
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-[![Week 1 Wireframe](../../assets/project/week1.png)](https://hyf-react-w1-example.netlify.app)
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-There is a live version [here](https://hyf-react-w1-example.netlify.app)
+### `npm test`
 
-We will be using the information in the `fake-data` folder as an example of what we get back from the API. The actual connection to the API will be done next week.
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-What you need to have done at the end of the week:
+### `npm run build`
 
-- A product list that displays all of the products in the `all-products` file. _Note: the site is responsive, so have a look at the breakpoints in the deployed example project._
-- A category list that displays all of the categories in the `all-categories` file at the top of the page
-- If the user clicks on a category only the products that have that category in their `category` property should be displayed on the screen. _Note: The categories listed in the product objects do *not* match up exactly with the categories in the categories list. You will have to find a solution to this *without* editing the files_
-- There should only be 1 category active at a time and the user should see which category is selected.
-- You need to deploy your app somewhere (using something like [netlify](https://www.netlify.com)) and put the link in your PR!
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

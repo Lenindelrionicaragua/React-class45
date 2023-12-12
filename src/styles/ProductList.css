@@ -1,0 +1,28 @@
+/* Product list styles */
+.product-list {
+  display: grid;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.product-list li {
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* Display title below the image */
+  align-items: center; /* Center items horizontally */
+}
+
+/* Product image styles */
+.product-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Product link styles */
+.product-link {
+  color: blue; /* o el color que desees */
+  text-decoration: underline; /* o el estilo de subrayado que desees */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el enlace */
+}

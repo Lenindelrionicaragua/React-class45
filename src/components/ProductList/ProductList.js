@@ -14,8 +14,11 @@ const ProductList = ({ products, selectedCategory, onProductClick }) => {
         {filteredProducts.map((product, index) => (
           <li key={index}>
             <a
-              href="#"
-              onClick={() => onProductClick(product)}
+              href="/"
+              onClick={(e) => {
+                e.preventDefault(); // Evita la acción predeterminada del enlace
+                onProductClick(product);
+              }}
               className="product-link"
             >
               <img

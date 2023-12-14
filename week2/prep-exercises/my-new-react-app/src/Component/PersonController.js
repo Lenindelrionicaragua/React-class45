@@ -1,43 +1,43 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import ButtonLoadPerson from "./ButtonLoadPerson";
 import Person from "./Person";
 
 const PersonController = () => {
-  const [person, setPerson] = useState(null);
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [persons, setPersons] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const getPerson = async () => {
+  const handleButtonClick = async () => {
+    setLoading(true);
+
     try {
       const response = await fetch("https://www.randomuser.me/api?results=1");
-      if (!response.ok) {
-        throw new Error(`Failed to fetch data. Status: ${response.status}`);
-      }
       const data = await response.json();
-      const [firstPerson] = data.results;
+      const [newPerson] = data.results;
 
-      const simplifiedPerson = {
-        first_name: firstPerson.name.first,
-        last_name: firstPerson.name.last,
-        email: firstPerson.email,
+      const formattedPerson = {
+        firstName: newPerson.name.first,
+        lastName: newPerson.name.last,
+        email: newPerson.email,
       };
 
-      setPerson(simplifiedPerson);
+      setPersons((prevPersons) => [...prevPersons, formattedPerson]);
     } catch (error) {
       console.error("Error fetching data:", error.message);
     }
+
+    setLoading(false);
   };
 
-  useEffect(() => {
-    if (isButtonClicked) {
-      getPerson();
-      setIsButtonClicked(false);
-    }
-  }, [isButtonClicked]);
-
-  const handleClick = () => {
-    setIsButtonClicked(true);
-  };
-
-  return <Person person={person} onClick={handleClick} />;
+  return (
+    <div className="person-controller">
+      <ButtonLoadPerson
+        onClick={handleButtonClick}
+        loading={loading}
+        firstPersonLoaded={persons.length > 0}
+      />
+      <Person persons={persons} />
+    </div>
+  );
 };
 
 export default PersonController;

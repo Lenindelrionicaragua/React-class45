@@ -22,7 +22,7 @@
 
 /* Product link styles */
 .product-link {
-  color: blue; /* o el color que desees */
-  text-decoration: underline; /* o el estilo de subrayado que desees */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el enlace */
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
 }

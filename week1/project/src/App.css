@@ -26,6 +26,6 @@
 
 /* Fixed height for all images */
 .product-image {
-  height: 200px; /* Set the desired fixed height for all images */
-  object-fit: cover; /* Maintain the aspect ratio and cover the container */
+  height: 200px;
+  object-fit: cover;
 }

@@ -15,7 +15,7 @@ const CategoryList = ({ categories, selectedCategory, onCategoryClick }) => {
   };
 
   return (
-    <div>
+    <>
       <h2>Categories</h2>
       <ul className="category-list">
         {categories.map((category) => (
@@ -35,7 +35,7 @@ const CategoryList = ({ categories, selectedCategory, onCategoryClick }) => {
           />
         )}
       </ul>
-    </div>
+    </>
   );
 };
 

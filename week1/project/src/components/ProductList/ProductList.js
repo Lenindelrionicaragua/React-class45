@@ -3,7 +3,7 @@ import React from "react";
 const ProductList = ({ products, selectedCategory, onProductClick }) => {
   const filteredProducts = Array.isArray(products)
     ? selectedCategory
-      ? products.filter((product) => product.category === selectedCategory)
+      ? products.filter(({ category }) => category === selectedCategory)
       : products
     : [];
 

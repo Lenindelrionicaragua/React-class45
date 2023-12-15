@@ -16,3 +16,11 @@
 .category-list li.active {
   font-weight: bold;
 }
+
+.category-list-item {
+  cursor: pointer;
+}
+
+.category-list-item.active {
+  font-weight: bold;
+}

@@ -30,7 +30,7 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>E-commerce App</h1>
+        <h1>Products</h1>
         <CategoryList
           categories={categories}
           selectedCategory={selectedCategory}

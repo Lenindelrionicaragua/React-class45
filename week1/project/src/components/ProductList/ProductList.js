@@ -9,7 +9,6 @@ const ProductList = ({ products, selectedCategory, onProductClick }) => {
 
   return (
     <div>
-      <h2>Products</h2>
       <ul className="product-list">
         {filteredProducts.map((product, index) => (
           <li key={index}>

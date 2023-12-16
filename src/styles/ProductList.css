@@ -12,8 +12,8 @@
   align-items: center;
 }
 
-.product-list li a {
-  border: none;
+.product-list li button {
+  border: none; /* Eliminamos el borde para los botones */
 }
 
 .product-image {

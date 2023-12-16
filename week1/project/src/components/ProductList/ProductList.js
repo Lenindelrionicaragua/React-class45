@@ -12,8 +12,8 @@ const ProductList = ({ products, selectedCategory, onProductClick }) => {
       <ul className="product-list">
         {filteredProducts.map((product, index) => (
           <li key={index}>
-            <a
-              href="#"
+            <button
+              type="button"
               onClick={() => onProductClick(product)}
               className="product-link"
             >
@@ -23,7 +23,7 @@ const ProductList = ({ products, selectedCategory, onProductClick }) => {
                 className="product-image"
               />
               <h3>{product.title.replace(/^FAKE: /, "")}</h3>
-            </a>
+            </button>
           </li>
         ))}
       </ul>

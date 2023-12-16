@@ -2,9 +2,8 @@ import React from "react";
 
 const CategoryListItem = ({ category, isSelected, onClick }) => (
   <li
-    className={isSelected ? "active" : ""}
-    onClick={onClick}
-    style={{ cursor: "pointer" }}
+    className={`category-list-item ${isSelected ? "active" : ""}`}
+    onClick={() => onClick(category)}
   >
     {category}
   </li>

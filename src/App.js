@@ -10,15 +10,18 @@ const App = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
+  // Extract unique categories from the list of all products
   const categories = Array.from(
     new Set(allProducts.map((product) => product.category))
   );
 
+  // Handle category click event
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
     setSelectedProduct(null); // Reset selected product when changing categories
   };
 
+  // Handle product click event
   const handleProductClick = (product) => {
     setSelectedProduct(product);
     setSelectedCategory(null); // Reset selected category when clicking on a product
@@ -27,7 +30,7 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>E-commerce App</h1>
+        <h1>Products</h1>
         <CategoryList
           categories={categories}
           selectedCategory={selectedCategory}
@@ -35,7 +38,7 @@ const App = () => {
         />
         {selectedProduct ? (
           <div>
-            {/* Mostrar solo el producto seleccionado */}
+            {/* Display only the selected product */}
             <h2>{selectedProduct.title.replace(/^FAKE: /, "")}</h2>
             <img
               src={selectedProduct.image}

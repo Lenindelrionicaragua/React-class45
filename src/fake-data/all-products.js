@@ -1,4 +1,4 @@
-const allProducts = [
+export default [
   {
     id: 1,
     title: "FAKE: Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
@@ -267,5 +267,3 @@ const allProducts = [
     },
   },
 ];
-
-export default allProducts;

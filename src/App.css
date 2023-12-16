@@ -1,31 +1,22 @@
+body {
+  margin: 20px;
+}
+
 /* Responsive styles */
 @media (min-width: 576px) {
-  /* Single column for screens smaller than 576px (e.g., mobile) */
   .product-list {
-    grid-template-columns: 1fr;
-  }
-
-  .product-image {
-    max-height: 150px; /* Adjust the max-height as needed for smaller screens */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 768px) {
-  /* Two columns for tablets in portrait mode and larger */
   .product-list {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 992px) {
-  /* Three columns for laptops and larger */
   .product-list {
     grid-template-columns: repeat(3, 1fr);
   }
-}
-
-/* Fixed height for all images */
-.product-image {
-  height: 200px; /* Set the desired fixed height for all images */
-  object-fit: cover; /* Maintain the aspect ratio and cover the container */
 }

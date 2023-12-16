@@ -3,22 +3,18 @@ import React from "react";
 const ProductList = ({ products, selectedCategory, onProductClick }) => {
   const filteredProducts = Array.isArray(products)
     ? selectedCategory
-      ? products.filter((product) => product.category === selectedCategory)
+      ? products.filter(({ category }) => category === selectedCategory)
       : products
     : [];
 
   return (
     <div>
-      <h2>Products</h2>
       <ul className="product-list">
         {filteredProducts.map((product, index) => (
           <li key={index}>
             <a
-              href="/"
-              onClick={(e) => {
-                e.preventDefault(); // Evita la acción predeterminada del enlace
-                onProductClick(product);
-              }}
+              href="#"
+              onClick={() => onProductClick(product)}
               className="product-link"
             >
               <img

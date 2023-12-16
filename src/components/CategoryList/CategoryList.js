@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import CategoryListItem from "./CategoryListItem";
 
 const CategoryList = ({ categories, selectedCategory, onCategoryClick }) => {

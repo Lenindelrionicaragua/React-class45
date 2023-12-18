@@ -2,6 +2,12 @@ body {
   margin: 20px;
 }
 
+.product-list {
+  display: grid;
+  gap: 20px;
+  grid-auto-flow: row; /* Esto permite que los elementos fluyan a una nueva fila cuando no haya suficiente espacio en la columna */
+}
+
 /* Responsive styles */
 @media (min-width: 576px) {
   .product-list {
@@ -11,12 +17,12 @@ body {
 
 @media (min-width: 768px) {
   .product-list {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (min-width: 992px) {
   .product-list {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }

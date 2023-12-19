@@ -1,3 +1,4 @@
+// ProductList.js
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getProducts } from "../../services/api";
@@ -22,15 +23,21 @@ const ProductList = ({ selectedCategory, onProductClick }) => {
     fetchData();
   }, [selectedCategory]);
 
+  const handleProductClick = (product) => {
+    // Ensure that onProductClick is a function before invoking it
+    if (typeof onProductClick === "function") {
+      onProductClick(product);
+    }
+  };
+
   const renderProductList = () => (
     <ul className="product-list">
       {products.map((product, index) => (
         <li key={index}>
-          {/* Use Link from react-router-dom to navigate to the product detail page */}
-          <Link to={`/products/${product.id}`}>
+          <Link to={`/product/${product.id}`}>
             <button
               type="button"
-              onClick={() => onProductClick(product)}
+              onClick={() => handleProductClick(product)}
               className="product-link"
             >
               <img

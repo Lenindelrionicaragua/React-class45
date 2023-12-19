@@ -1,4 +1,3 @@
-// ProductList.js
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getProducts } from "../../services/api";
@@ -30,6 +29,7 @@ const ProductList = ({ selectedCategory, onProductClick }) => {
     }
   };
 
+  // Create a constant render function for a cleaner return statement
   const renderProductList = () => (
     <ul className="product-list">
       {products.map((product, index) => (
@@ -53,6 +53,7 @@ const ProductList = ({ selectedCategory, onProductClick }) => {
     </ul>
   );
 
+  // Use the renderProductList constant for a cleaner return statement
   return (
     <div>
       {loading ? (

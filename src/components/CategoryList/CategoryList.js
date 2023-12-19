@@ -1,4 +1,3 @@
-// CategoryList.js
 import React from "react";
 import CategoryListItem from "../CategoryListItem/CategoryListItem";
 

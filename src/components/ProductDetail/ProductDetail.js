@@ -11,7 +11,7 @@ const ProductDetail = ({ products, setSelectedProduct }) => {
       setSelectedProduct(product);
     }
 
-    // Limpiar el producto seleccionado cuando se desmonta el componente
+    // Clean up the selected product when the component is unmounted
     return () => {
       setSelectedProduct(null);
     };

@@ -1,5 +1,6 @@
+// App.js
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import AppRoutes from "./AppRoutes";
 import "./App.css";
 import "./styles/ProductList.css";
@@ -16,6 +17,7 @@ const App = () => {
   const [allProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
+    // Fetch categories and products data on component mount
     const fetchData = async () => {
       try {
         const categoriesData = await getCategories();
@@ -33,35 +35,41 @@ const App = () => {
   }, []);
 
   const handleCategoryClick = (category) => {
+    // Handle category click
     setSelectedCategory(category);
     setSelectedProduct(null);
   };
 
-  const handleProductClick = (product) => {
-    setSelectedCategory(null);
-    setSelectedProduct(product);
+  const renderLoadingOrError = () => {
+    // Render loading or error message
+    if (loading) {
+      return <p>Loading...</p>;
+    } else if (error) {
+      return <p>{error}</p>;
+    }
+  };
+
+  const renderHeader = () => {
+    // Render header with title and application routes
+    return (
+      <React.Fragment>
+        <h1>{selectedProduct ? selectedProduct.title : "Products"}</h1>
+        <AppRoutes
+          categories={categories}
+          selectedCategory={selectedCategory}
+          setSelectedProduct={setSelectedProduct}
+          products={allProducts}
+          handleCategoryClick={handleCategoryClick}
+        />
+      </React.Fragment>
+    );
   };
 
   return (
     <Router>
       <div className="App">
         <header className="App-header">
-          {loading ? (
-            <p>Loading...</p>
-          ) : error ? (
-            <p>{error}</p>
-          ) : (
-            <React.Fragment>
-              <h1>{selectedProduct ? selectedProduct.title : "Products"}</h1>
-              <AppRoutes
-                categories={categories}
-                selectedCategory={selectedCategory}
-                setSelectedProduct={setSelectedProduct}
-                products={allProducts}
-                handleCategoryClick={handleCategoryClick}
-              />
-            </React.Fragment>
-          )}
+          {renderLoadingOrError() || renderHeader()}
         </header>
       </div>
     </Router>

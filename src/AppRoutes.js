@@ -1,4 +1,3 @@
-// AppRoutes.js
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -17,6 +16,7 @@ const AppRoutes = ({
   handleCategoryClick,
 }) => (
   <RoutesContainer>
+    {/* Route for displaying the details of a specific product */}
     <Route
       path="/product/:id"
       element={
@@ -26,15 +26,20 @@ const AppRoutes = ({
         />
       }
     />
+
+    {/* Default route for displaying categories and product list */}
     <Route
       path="/"
       element={
         <React.Fragment>
+          {/* Component for displaying a list of categories */}
           <CategoryList
             categories={categories}
             selectedCategory={selectedCategory}
             onCategoryClick={handleCategoryClick}
           />
+
+          {/* Component for displaying a list of products */}
           <ProductList
             selectedCategory={selectedCategory}
             setSelectedProduct={setSelectedProduct}
@@ -43,6 +48,8 @@ const AppRoutes = ({
         </React.Fragment>
       }
     />
+
+    {/* Route for displaying products based on a specific category */}
     <Route
       path="/category/:category"
       element={

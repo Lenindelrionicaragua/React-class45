@@ -1,18 +1,15 @@
-// Importa las dependencias necesarias
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AppRoutes from "./AppRoutes";
-
-// Importa estilos y componentes adicionales
 import "./App.css";
 import "./styles/ProductList.css";
 import "./styles/CategoryList.css";
 import CategoryList from "./components/CategoryList/CategoryList";
+import ProductList from "./components/ProductList/ProductList";
+import ProductDetail from "./components/ProductDetail/ProductDetail";
 import { getCategories, getProducts } from "./services/api";
 
-// Define el componente principal
 const App = () => {
-  // Define los estados iniciales
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -20,7 +17,6 @@ const App = () => {
   const [error, setError] = useState(null);
   const [allProducts, setAllProducts] = useState([]);
 
-  // Obtiene las categorías y productos al cargar el componente
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -38,48 +34,83 @@ const App = () => {
     fetchData();
   }, []);
 
-  // Maneja el clic en una categoría
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
     setSelectedProduct(null);
   };
 
-  // Maneja el clic en un producto
   const handleProductClick = (product) => {
     setSelectedCategory(null);
     setSelectedProduct(product);
   };
 
-  // Renderiza la aplicación
   return (
     <Router>
       <div className="App">
         <header className="App-header">
-          <h1>{selectedProduct ? selectedProduct.title : "Products"}</h1>
           {loading ? (
             <p>Loading...</p>
           ) : error ? (
             <p>{error}</p>
           ) : (
-            !selectedProduct && (
-              <CategoryList
-                categories={categories}
-                selectedCategory={selectedCategory}
-                onCategoryClick={handleCategoryClick}
-              />
-            )
+            <React.Fragment>
+              {selectedProduct ? (
+                <h1>{selectedProduct.title}</h1>
+              ) : (
+                <React.Fragment>
+                  <h1>Products</h1>
+                  <CategoryList
+                    categories={categories}
+                    selectedCategory={selectedCategory}
+                    onCategoryClick={handleCategoryClick}
+                  />
+                  <ProductList
+                    selectedCategory={selectedCategory}
+                    onProductClick={handleProductClick}
+                  />
+                </React.Fragment>
+              )}
+            </React.Fragment>
           )}
 
-          <AppRoutes
+          <Routes>
+            <Route
+              path="/product/:id"
+              element={
+                <ProductDetail
+                  products={allProducts}
+                  setSelectedProduct={setSelectedProduct}
+                />
+              }
+            />
+            <Route
+              path="/"
+              element={
+                <React.Fragment>
+                  <CategoryList
+                    categories={categories}
+                    selectedCategory={selectedCategory}
+                    onCategoryClick={handleCategoryClick}
+                  />
+                  <ProductList
+                    selectedCategory={selectedCategory}
+                    onProductClick={handleProductClick}
+                  />
+                </React.Fragment>
+              }
+            />
+          </Routes>
+
+          {/* Comenta o elimina el siguiente código si no lo necesitas */}
+          {/* <AppRoutes
             selectedCategory={selectedCategory}
             setSelectedProduct={setSelectedProduct}
             products={allProducts}
-          />
+          /> */}
         </header>
       </div>
     </Router>
   );
 };
 
-// Exporta el componente principal
 export default App;

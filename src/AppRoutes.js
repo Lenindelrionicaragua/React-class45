@@ -1,31 +1,48 @@
 // AppRoutes.js
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes as RoutesContainer,
+} from "react-router-dom";
 import ProductList from "./components/ProductList/ProductList";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
+import CategoryList from "./components/CategoryList/CategoryList";
 
-const AppRoutes = ({ selectedCategory, setSelectedProduct, products }) => (
-  <Routes>
+const AppRoutes = ({
+  categories,
+  selectedCategory,
+  setSelectedProduct,
+  products,
+  handleCategoryClick,
+}) => (
+  <RoutesContainer>
     <Route
       path="/product/:id"
       element={
         <ProductDetail
-          setSelectedProduct={setSelectedProduct}
           products={products}
+          setSelectedProduct={setSelectedProduct}
         />
       }
     />
     <Route
-      path="/products"
+      path="/"
       element={
-        <ProductList
-          selectedCategory={selectedCategory}
-          setSelectedProduct={setSelectedProduct}
-          products={products}
-        />
+        <React.Fragment>
+          <CategoryList
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onCategoryClick={handleCategoryClick}
+          />
+          <ProductList
+            selectedCategory={selectedCategory}
+            setSelectedProduct={setSelectedProduct}
+            products={products}
+          />
+        </React.Fragment>
       }
     />
-    {/* Agrega una ruta para mostrar productos filtrados por categoría */}
     <Route
       path="/category/:category"
       element={
@@ -36,9 +53,7 @@ const AppRoutes = ({ selectedCategory, setSelectedProduct, products }) => (
         />
       }
     />
-    {/* Ruta por defecto: muestra todos los productos */}
-    <Route path="*" element={<ProductList products={products} />} />
-  </Routes>
+  </RoutesContainer>
 );
 
 export default AppRoutes;

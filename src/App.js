@@ -4,9 +4,7 @@ import AppRoutes from "./AppRoutes";
 import "./App.css";
 import "./styles/ProductList.css";
 import "./styles/CategoryList.css";
-import CategoryList from "./components/CategoryList/CategoryList";
-import ProductList from "./components/ProductList/ProductList";
-import ProductDetail from "./components/ProductDetail/ProductDetail";
+
 import { getCategories, getProducts } from "./services/api";
 
 const App = () => {
@@ -54,59 +52,16 @@ const App = () => {
             <p>{error}</p>
           ) : (
             <React.Fragment>
-              {selectedProduct ? (
-                <h1>{selectedProduct.title}</h1>
-              ) : (
-                <React.Fragment>
-                  <h1>Products</h1>
-                  <CategoryList
-                    categories={categories}
-                    selectedCategory={selectedCategory}
-                    onCategoryClick={handleCategoryClick}
-                  />
-                  <ProductList
-                    selectedCategory={selectedCategory}
-                    onProductClick={handleProductClick}
-                  />
-                </React.Fragment>
-              )}
+              <h1>{selectedProduct ? selectedProduct.title : "Products"}</h1>
+              <AppRoutes
+                categories={categories}
+                selectedCategory={selectedCategory}
+                setSelectedProduct={setSelectedProduct}
+                products={allProducts}
+                handleCategoryClick={handleCategoryClick}
+              />
             </React.Fragment>
           )}
-
-          <Routes>
-            <Route
-              path="/product/:id"
-              element={
-                <ProductDetail
-                  products={allProducts}
-                  setSelectedProduct={setSelectedProduct}
-                />
-              }
-            />
-            <Route
-              path="/"
-              element={
-                <React.Fragment>
-                  <CategoryList
-                    categories={categories}
-                    selectedCategory={selectedCategory}
-                    onCategoryClick={handleCategoryClick}
-                  />
-                  <ProductList
-                    selectedCategory={selectedCategory}
-                    onProductClick={handleProductClick}
-                  />
-                </React.Fragment>
-              }
-            />
-          </Routes>
-
-          {/* Comenta o elimina el siguiente código si no lo necesitas */}
-          {/* <AppRoutes
-            selectedCategory={selectedCategory}
-            setSelectedProduct={setSelectedProduct}
-            products={allProducts}
-          /> */}
         </header>
       </div>
     </Router>

@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes as RoutesContainer,
-} from "react-router-dom";
+import { Route, Routes as RoutesContainer } from "react-router-dom";
 import ProductList from "./components/ProductList/ProductList";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 import CategoryList from "./components/CategoryList/CategoryList";
@@ -14,9 +10,9 @@ const AppRoutes = ({
   setSelectedProduct,
   products,
   handleCategoryClick,
+  onProductClick,
 }) => (
   <RoutesContainer>
-    {/* Route for displaying the details of a specific product */}
     <Route
       path="/product/:id"
       element={
@@ -27,29 +23,26 @@ const AppRoutes = ({
       }
     />
 
-    {/* Default route for displaying categories and product list */}
     <Route
       path="/"
       element={
         <React.Fragment>
-          {/* Component for displaying a list of categories */}
           <CategoryList
             categories={categories}
             selectedCategory={selectedCategory}
             onCategoryClick={handleCategoryClick}
           />
 
-          {/* Component for displaying a list of products */}
           <ProductList
             selectedCategory={selectedCategory}
             setSelectedProduct={setSelectedProduct}
             products={products}
+            onProductClick={onProductClick}
           />
         </React.Fragment>
       }
     />
 
-    {/* Route for displaying products based on a specific category */}
     <Route
       path="/category/:category"
       element={
@@ -57,6 +50,7 @@ const AppRoutes = ({
           selectedCategory={selectedCategory}
           setSelectedProduct={setSelectedProduct}
           products={products}
+          onProductClick={onProductClick}
         />
       }
     />

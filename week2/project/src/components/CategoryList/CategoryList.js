@@ -11,7 +11,7 @@ const CategoryList = ({ categories, selectedCategory, onCategoryClick }) => {
     <ul className="category-list">
       {categories.map((category) => (
         <CategoryListItem
-          key={category}
+          key={category.id}
           category={category}
           isSelected={category === selectedCategory}
           onClick={() => handleClick(category)}

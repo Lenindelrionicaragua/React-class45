@@ -22,13 +22,6 @@ const ProductList = ({ selectedCategory, onProductClick }) => {
     fetchData();
   }, [selectedCategory]);
 
-  const handleProductClick = (product) => {
-    // Ensure that onProductClick is a function before invoking it
-    if (typeof onProductClick === "function") {
-      onProductClick(product);
-    }
-  };
-
   // Create a constant render function for a cleaner return statement
   const renderProductList = () => (
     <ul className="product-list">
@@ -37,7 +30,7 @@ const ProductList = ({ selectedCategory, onProductClick }) => {
           <Link to={`/product/${product.id}`}>
             <button
               type="button"
-              onClick={() => handleProductClick(product)}
+              onClick={() => onProductClick(product)}
               className="product-link"
             >
               <img

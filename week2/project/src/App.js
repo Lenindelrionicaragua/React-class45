@@ -1,4 +1,3 @@
-// App.js
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import AppRoutes from "./AppRoutes";
@@ -17,7 +16,6 @@ const App = () => {
   const [allProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
-    // Fetch categories and products data on component mount
     const fetchData = async () => {
       try {
         const categoriesData = await getCategories();
@@ -35,41 +33,33 @@ const App = () => {
   }, []);
 
   const handleCategoryClick = (category) => {
-    // Handle category click
     setSelectedCategory(category);
     setSelectedProduct(null);
   };
 
-  const renderLoadingOrError = () => {
-    // Render loading or error message
-    if (loading) {
-      return <p>Loading...</p>;
-    } else if (error) {
-      return <p>{error}</p>;
-    }
-  };
-
-  const renderHeader = () => {
-    // Render header with title and application routes
-    return (
-      <React.Fragment>
-        <h1>{selectedProduct ? selectedProduct.title : "Products"}</h1>
-        <AppRoutes
-          categories={categories}
-          selectedCategory={selectedCategory}
-          setSelectedProduct={setSelectedProduct}
-          products={allProducts}
-          handleCategoryClick={handleCategoryClick}
-        />
-      </React.Fragment>
-    );
+  const onProductClick = (product) => {
+    console.log("Selected product:", product);
   };
 
   return (
     <Router>
       <div className="App">
         <header className="App-header">
-          {renderLoadingOrError() || renderHeader()}
+          {loading ? <p>Loading...</p> : null}
+          {error ? <p>{error}</p> : null}
+          {!loading && !error && (
+            <>
+              <h1>{selectedProduct ? selectedProduct.title : "Products"}</h1>
+              <AppRoutes
+                categories={categories}
+                selectedCategory={selectedCategory}
+                setSelectedProduct={setSelectedProduct}
+                products={allProducts}
+                handleCategoryClick={handleCategoryClick}
+                onProductClick={onProductClick}
+              />
+            </>
+          )}
         </header>
       </div>
     </Router>

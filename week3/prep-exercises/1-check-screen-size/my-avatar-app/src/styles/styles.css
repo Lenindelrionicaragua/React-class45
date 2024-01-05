@@ -1,11 +1,20 @@
 .avatar {
-  max-width: 100%;
+  max-width: 70%;
   height: auto;
 }
 
 .avatar-container {
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+.avatar-info {
+  margin-left: 20px;
+}
+
+/* Add styles for additional information if necessary */
+.avatar-info p {
+  margin: 5px 0;
 }

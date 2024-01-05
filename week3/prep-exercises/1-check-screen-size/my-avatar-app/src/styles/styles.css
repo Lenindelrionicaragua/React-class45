@@ -1,5 +1,5 @@
 .avatar {
-  max-width: 70%;
+  width: 200px; /* ajusta el valor según sea necesario */
   height: auto;
 }
 

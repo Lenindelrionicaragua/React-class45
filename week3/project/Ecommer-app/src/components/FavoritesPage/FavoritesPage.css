@@ -3,17 +3,16 @@
   padding: 0;
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: left;
 }
 
 .favorites-item {
   margin: 10px;
-  text-align: center;
-  position: relative;
+  text-align: left;
 }
 
 .favorites-image {
-  max-width: 100px;
+  max-width: 200px;
   height: auto;
 }
 

@@ -32,12 +32,10 @@ const ProductList = ({
   }, [productsData]);
 
   useEffect(() => {
-    fetchData(); // Fetch when selectedCategory changes
+    fetchData();
   }, [selectedCategory, fetchData]);
 
   const handleProductClick = async (product) => {
-    console.log("Product clicked:", product);
-
     if (typeof onProductClick === "function") {
       onProductClick({
         id: product.id,
@@ -48,7 +46,6 @@ const ProductList = ({
     }
 
     if (selectedCategory) {
-      // If there's a selected category, update the products
       await fetchData();
       setProducts(productsData);
     }
@@ -59,11 +56,8 @@ const ProductList = ({
   };
 
   const handleFavoriteClick = (event, productId) => {
-    // Prevent event propagation to avoid navigation
     event.preventDefault();
     event.stopPropagation();
-
-    console.log("Favorite button clicked for product ID:", productId);
 
     if (isFavorite(productId)) {
       removeFavorite(productId);
@@ -87,7 +81,7 @@ const ProductList = ({
                 className="product-image"
               />
               <h3>{product.title}</h3>
-              {/* Heart Icon */}
+
               <div className="heart-icon-container">
                 {isFavorite(product.id) ? (
                   <HeartSolidIcon

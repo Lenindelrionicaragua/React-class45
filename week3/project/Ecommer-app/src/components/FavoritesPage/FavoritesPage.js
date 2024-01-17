@@ -5,9 +5,6 @@ import useFetch from "../../hooks/useFetch";
 import "./FavoritesPage.css";
 import HeartSolidIcon from "../HeartIcons/HeartSolidIcon";
 
-/**
- * FavoritesPage component displays a list of favorite products.
- */
 const FavoritesPage = () => {
   const { favoriteIds, removeFavorite } = useFavorites();
   const { data, loading, error, fetchData } = useFetch(
@@ -15,7 +12,6 @@ const FavoritesPage = () => {
   );
   const [favoriteProducts, setFavoriteProducts] = React.useState([]);
 
-  // Fetch data when favoriteIds change
   useEffect(() => {
     if (favoriteIds.length > 0) {
       fetchData();
@@ -24,7 +20,6 @@ const FavoritesPage = () => {
     }
   }, [favoriteIds, fetchData]);
 
-  // Filter and set favoriteProducts when data or favoriteIds change
   useEffect(() => {
     const filteredFavorites = data.filter((product) =>
       favoriteIds.includes(product.id)
@@ -32,29 +27,18 @@ const FavoritesPage = () => {
     setFavoriteProducts(filteredFavorites);
   }, [favoriteIds, data]);
 
-  // Handle click on a product
-  const handleProductClick = (product) => {
-    console.log("Product clicked:", product);
-  };
-
-  // Handle click on the favorite icon
   const handleFavoriteClick = (event, productId) => {
     event.preventDefault();
     event.stopPropagation();
-    console.log("Favorite button clicked for product ID:", productId);
     removeFavorite(productId);
   };
 
-  // Render the list of favorite products
   const renderFavoriteList = () => (
     <ul className="favorites-list">
       {favoriteProducts.map((product) => (
         <li key={product.id} className="favorites-item">
           <Link to={`/product/${product.id}`}>
-            <div
-              className="product-container"
-              onClick={() => handleProductClick(product)}
-            >
+            <div className="product-container">
               <img
                 src={product.image}
                 alt={product.title}
